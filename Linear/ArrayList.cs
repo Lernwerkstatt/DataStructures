@@ -2,7 +2,7 @@ using System;
 
 namespace Linear
 {
-    class ArrayList
+    public class ArrayList
     {
         private int[] arr;
         public int Count { get; set; }
