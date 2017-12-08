@@ -12,13 +12,12 @@ namespace Linear
         }
         public void Insert(int index, int value)
         {
-            int[] newArr = new int[arr.Length + 1];
-            
+            int[] newArr = new int[Count];
             Array.Copy(this.arr, newArr, index);
             newArr[index] = value;
-            Array.Copy(this.arr, index, newArr, index + 1, arr.Length - index);
+            Array.Copy(this.arr, index + 1, newArr, index + 1, Count - index - 1);
             this.arr = newArr;
-            Count++;
+            
         }
         public void Clear()
         {
