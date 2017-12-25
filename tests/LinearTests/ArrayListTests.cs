@@ -1,16 +1,17 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Linear;
+using Generic;
+using System;
 
-namespace LinearTests
+namespace Test
 {
     [TestClass]
     public class ArrayListTests
     {
         [TestMethod]
-        public void Add()
+        public void AddInt()
         {
-            ArrayList target = new ArrayList();
+            ArrayList<int> target = new ArrayList<int>();
             foreach (int i in Enumerable.Range(1, 999))
             {
                 target.Add(i);
@@ -21,10 +22,52 @@ namespace LinearTests
                 Assert.IsTrue(target.Contains(i), string.Format("Failed at {0}", i));
             }
         }
+
         [TestMethod]
-        public void Clear()
+        public void AddChar()
         {
-            ArrayList target = new ArrayList();
+            ArrayList<char> target = new ArrayList<char>();
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                target.Add((char)i);
+            }
+
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                Assert.IsTrue(target.Contains((char)i), string.Format("Failed at {0}", i));
+            }
+        }
+
+        [TestMethod]
+        public void AddBool()
+        {
+            ArrayList<bool> target = new ArrayList<bool>();
+            Random rand = new Random();
+
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                int temp = rand.Next(2, 4);
+                if (temp % 2 == 0)
+                {
+                    target.Add(true);
+                }
+                else
+                {
+                    target.Add(false);
+                }
+
+            }
+
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                Assert.IsTrue(target[i].GetType().Name == "Boolean", string.Format("Failed at {0}", i));
+            }
+        }
+
+        [TestMethod]
+        public void ClearInt()
+        {
+            ArrayList<int> target = new ArrayList<int>();
             foreach (int i in Enumerable.Range(1, 999))
             {
                 target.Add(i);
@@ -34,10 +77,50 @@ namespace LinearTests
 
             Assert.IsTrue(target.Count == 0, string.Format("Failed ArrayList is not empty"));
         }
+
         [TestMethod]
-        public void Remove()
+        public void ClearChar()
         {
-            ArrayList target = new ArrayList();
+            ArrayList<int> target = new ArrayList<int>();
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                target.Add((char)i);
+            }
+
+            target.Clear();
+
+            Assert.IsTrue(target.Count == 0, string.Format("Failed ArrayList is not empty"));
+        }
+
+        [TestMethod]
+        public void  ClearBool()
+        {
+            ArrayList<bool> target = new ArrayList<bool>();
+            Random rand = new Random();
+
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                int temp = rand.Next(2, 4);
+                if (temp % 2 == 0)
+                {
+                    target.Add(true);
+                }
+                else
+                {
+                    target.Add(false);
+                }
+
+            }
+
+            target.Clear();
+
+            Assert.IsTrue(target.Count == 0, string.Format("Failed ArrayList is not empty"));
+        }
+
+        [TestMethod]
+        public void RemoveInt()
+        {
+            ArrayList<int> target = new ArrayList<int>();
             foreach (int i in Enumerable.Range(1, 999))
             {
                 target.Add(i);
@@ -53,10 +136,31 @@ namespace LinearTests
                 Assert.IsTrue(target.Count == 0, string.Format("Failed ArrayList is not empty", i));
             }
         }
+
         [TestMethod]
-        public void Insert()
+        public void RemoveChar()
         {
-            ArrayList target = new ArrayList();
+            ArrayList<char> target = new ArrayList<char>();
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                target.Add((char)i);
+            }
+
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                Assert.IsTrue(target.Remove((char)i) != -1, string.Format("Failed {0} not existing", i));
+            }
+
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                Assert.IsTrue(target.Count == 0, string.Format("Failed ArrayList is not empty", i));
+            }
+        }        
+
+        [TestMethod]
+        public void InsertInt()
+        {
+            ArrayList<int> target = new ArrayList<int>();
             foreach (int i in Enumerable.Range(1, 999))
             {
                 target.Add(i);
@@ -67,11 +171,31 @@ namespace LinearTests
                 target.Insert(i - 1, 42);
             }
 
-            target.Insert(0, 666);
+            //target.Insert(0, 666);
 
             foreach (int i in Enumerable.Range(1, 999))
             {
                 Assert.IsTrue(target[i - 1] == 42, string.Format("Failed ArrayList item {0} didnt answer the Ultimate Question of Life, the Universe, and Everything", i));
+            }
+        }
+
+        [TestMethod]
+        public void InsertChar()
+        {
+            ArrayList<char> target = new ArrayList<char>();
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                target.Add((char)i);
+            }
+
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                target.Insert(i - 1, 'x');
+            }
+                        
+            foreach (int i in Enumerable.Range(1, 999))
+            {
+                Assert.IsTrue(target[i - 1] == 'x', string.Format("Failed ArrayList item {0} didnt answer the Ultimate Question of Life, the Universe, and Everything", i));
             }
         }
     }

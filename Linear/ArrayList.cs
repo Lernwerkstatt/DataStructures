@@ -1,18 +1,18 @@
 using System;
 
-namespace Linear
+namespace Generic
 {
-    public class ArrayList
+    public class ArrayList<T>
     {
-        private int[] arr;
+        private T[] arr;
         public int Count { get; set; }
         public ArrayList()
         {
-            this.arr = new int[4];
+            this.arr = new T[4];
         }
-        public void Insert(int index, int value)
+        public void Insert(int index, T value)
         {
-            int[] newArr = new int[Count];
+            T[] newArr = new T[Count];
             Array.Copy(this.arr, newArr, index);
             newArr[index] = value;
             Array.Copy(this.arr, index + 1, newArr, index + 1, Count - index - 1);
@@ -21,18 +21,18 @@ namespace Linear
         }
         public void Clear()
         {
-            this.arr = new int[4];
+            this.arr = new T[4];
             Count = 0;
         }
-        public int Remove(int number)
+        public int Remove(T number)
         {
             int result = -1;
             
             for (int i = 0; i < arr.Length; i++)
             {
-                if (number == this.arr[i])
+                if (number.Equals(this.arr[i]))
                 {
-                    int[] newArr = new int[arr.Length - 1];
+                    T[] newArr = new T[arr.Length - 1];
                     
                     Array.Copy(this.arr, newArr, i);
                     Array.Copy(this.arr, i+1, newArr, i, newArr.Length - i);
@@ -45,13 +45,13 @@ namespace Linear
             }
             return result;
         }
-        public bool Contains(int number)
+        public bool Contains(T number)
         {
             bool result = false;
             
-            foreach (int item in this.arr)
+            foreach (T item in this.arr)
             {
-                if (item == number)
+                if (item.Equals(number))
                 {
                     result = true;
                     break;
@@ -60,18 +60,18 @@ namespace Linear
             return result;
         }
         
-        public void Add(int number)
+        public void Add(T number)
         {
             if (Count == arr.Length)
             {
-                int[] newArr = new int[arr.Length * 2];
+                T[] newArr = new T[arr.Length * 2];
                 Array.Copy(this.arr, newArr, Count);
                 this.arr = newArr;
             }
             this.arr[Count++] = number;
         }
         
-        public int this[int index]
+        public T this[int index]
         {
             get
             {
