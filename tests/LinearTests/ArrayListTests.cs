@@ -1,6 +1,6 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Generic;
+using Linear;
 using System;
 
 namespace Test
@@ -38,7 +38,7 @@ namespace Test
             }
         }
 
-        [TestMethod]
+        [TestMethod]        
         public void AddBool()
         {
             ArrayList<bool> target = new ArrayList<bool>();
@@ -170,9 +170,7 @@ namespace Test
             {
                 target.Insert(i - 1, 42);
             }
-
-            //target.Insert(0, 666);
-
+                        
             foreach (int i in Enumerable.Range(1, 999))
             {
                 Assert.IsTrue(target[i - 1] == 42, string.Format("Failed ArrayList item {0} didnt answer the Ultimate Question of Life, the Universe, and Everything", i));

@@ -1,57 +1,57 @@
 using System;
 
-namespace Generic
+namespace Linear
 {
     public class ArrayList<T>
     {
-        private T[] arr;
+        private T[] arrayList;
         public int Count { get; set; }
         public ArrayList()
         {
-            this.arr = new T[4];
+            this.arrayList = new T[4];
         }
         public void Insert(int index, T value)
         {
             T[] newArr = new T[Count];
-            Array.Copy(this.arr, newArr, index);
+            Array.Copy(this.arrayList, newArr, index);
             newArr[index] = value;
-            Array.Copy(this.arr, index + 1, newArr, index + 1, Count - index - 1);
-            this.arr = newArr;
+            Array.Copy(this.arrayList, index + 1, newArr, index + 1, Count - index - 1);
+            this.arrayList = newArr;
             
         }
         public void Clear()
         {
-            this.arr = new T[4];
             Count = 0;
         }
-        public int Remove(T number)
+        public int Remove(T data)
         {
             int result = -1;
-            
-            for (int i = 0; i < arr.Length; i++)
+
+            for (int i = 0; i < arrayList.Length; i++)
             {
-                if (number.Equals(this.arr[i]))
+                if (data.Equals(this.arrayList[i]))
                 {
-                    T[] newArr = new T[arr.Length - 1];
-                    
-                    Array.Copy(this.arr, newArr, i);
-                    Array.Copy(this.arr, i+1, newArr, i, newArr.Length - i);
-                    this.arr = newArr;
+                    T[] newArr = new T[arrayList.Length - 1];
+
+                    Array.Copy(this.arrayList, newArr, i);
+                    Array.Copy(this.arrayList, i + 1, newArr, i, newArr.Length - i);
+                    this.arrayList = newArr;
                     Count--;
                     result = i;
-                    
+
                     return result;
                 }
             }
+            
             return result;
         }
-        public bool Contains(T number)
+        public bool Contains(T data)
         {
             bool result = false;
             
-            foreach (T item in this.arr)
+            foreach (T item in this.arrayList)
             {
-                if (item.Equals(number))
+                if (item.Equals(data))
                 {
                     result = true;
                     break;
@@ -60,29 +60,29 @@ namespace Generic
             return result;
         }
         
-        public void Add(T number)
+        public void Add(T data)
         {
-            if (Count == arr.Length)
+            if (Count == arrayList.Length)
             {
-                T[] newArr = new T[arr.Length * 2];
-                Array.Copy(this.arr, newArr, Count);
-                this.arr = newArr;
+                T[] newArr = new T[arrayList.Length * 2];
+                Array.Copy(this.arrayList, newArr, Count);
+                this.arrayList = newArr;
             }
-            this.arr[Count++] = number;
+            this.arrayList[Count++] = data;
         }
         
         public T this[int index]
         {
             get
             {
-                return this.arr[index];
+                return this.arrayList[index];
             }
         }
         public void DisplayArray()
         {
             for (int i = 0; i < Count; i++)
             {
-                Console.Write(this.arr[i] + " ");
+                Console.Write(this.arrayList[i] + " ");
             }
             Console.WriteLine();
         }
