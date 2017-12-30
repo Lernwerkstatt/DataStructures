@@ -4,19 +4,19 @@ namespace Linear
 {
     public class ArrayList<T>
     {
-        private T[] arrayList;
+        private T[] array;
         public int Count { get; set; }
         public ArrayList()
         {
-            this.arrayList = new T[4];
+            this.array = new T[4];
         }
         public void Insert(int index, T value)
         {
             T[] newArr = new T[Count];
-            Array.Copy(this.arrayList, newArr, index);
+            Array.Copy(this.array, newArr, index);
             newArr[index] = value;
-            Array.Copy(this.arrayList, index + 1, newArr, index + 1, Count - index - 1);
-            this.arrayList = newArr;
+            Array.Copy(this.array, index + 1, newArr, index + 1, Count - index - 1);
+            this.array = newArr;
             
         }
         public void Clear()
@@ -27,15 +27,15 @@ namespace Linear
         {
             int result = -1;
 
-            for (int i = 0; i < arrayList.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                if (data.Equals(this.arrayList[i]))
+                if (data.Equals(this.array[i]))
                 {
-                    T[] newArr = new T[arrayList.Length - 1];
+                    T[] newArr = new T[array.Length - 1];
 
-                    Array.Copy(this.arrayList, newArr, i);
-                    Array.Copy(this.arrayList, i + 1, newArr, i, newArr.Length - i);
-                    this.arrayList = newArr;
+                    Array.Copy(this.array, newArr, i);
+                    Array.Copy(this.array, i + 1, newArr, i, newArr.Length - i);
+                    this.array = newArr;
                     Count--;
                     result = i;
 
@@ -49,7 +49,7 @@ namespace Linear
         {
             bool result = false;
             
-            foreach (T item in this.arrayList)
+            foreach (T item in this.array)
             {
                 if (item.Equals(data))
                 {
@@ -62,27 +62,27 @@ namespace Linear
         
         public void Add(T data)
         {
-            if (Count == arrayList.Length)
+            if (Count == array.Length)
             {
-                T[] newArr = new T[arrayList.Length * 2];
-                Array.Copy(this.arrayList, newArr, Count);
-                this.arrayList = newArr;
+                T[] newArr = new T[array.Length * 2];
+                Array.Copy(this.array, newArr, Count);
+                this.array = newArr;
             }
-            this.arrayList[Count++] = data;
+            this.array[Count++] = data;
         }
         
         public T this[int index]
         {
             get
             {
-                return this.arrayList[index];
+                return this.array[index];
             }
         }
         public void DisplayArray()
         {
             for (int i = 0; i < Count; i++)
             {
-                Console.Write(this.arrayList[i] + " ");
+                Console.Write(this.array[i] + " ");
             }
             Console.WriteLine();
         }

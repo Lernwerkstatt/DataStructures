@@ -16,7 +16,7 @@ namespace Test
             {
                 target.Add(i);
             }
-      
+
             foreach (int i in Enumerable.Range(1, 999))
             {
                 Assert.IsTrue(target.Contains(i), string.Format("Failed at {0}", i));
@@ -38,7 +38,7 @@ namespace Test
             }
         }
 
-        [TestMethod]        
+        [TestMethod]
         public void AddBool()
         {
             ArrayList<bool> target = new ArrayList<bool>();
@@ -55,7 +55,6 @@ namespace Test
                 {
                     target.Add(false);
                 }
-
             }
 
             foreach (int i in Enumerable.Range(1, 999))
@@ -72,7 +71,6 @@ namespace Test
             {
                 target.Add(i);
             }
-
             target.Clear();
 
             Assert.IsTrue(target.Count == 0, string.Format("Failed ArrayList is not empty"));
@@ -93,7 +91,7 @@ namespace Test
         }
 
         [TestMethod]
-        public void  ClearBool()
+        public void ClearBool()
         {
             ArrayList<bool> target = new ArrayList<bool>();
             Random rand = new Random();
@@ -111,7 +109,6 @@ namespace Test
                 }
 
             }
-
             target.Clear();
 
             Assert.IsTrue(target.Count == 0, string.Format("Failed ArrayList is not empty"));
@@ -155,7 +152,7 @@ namespace Test
             {
                 Assert.IsTrue(target.Count == 0, string.Format("Failed ArrayList is not empty", i));
             }
-        }        
+        }
 
         [TestMethod]
         public void InsertInt()
@@ -170,7 +167,7 @@ namespace Test
             {
                 target.Insert(i - 1, 42);
             }
-                        
+
             foreach (int i in Enumerable.Range(1, 999))
             {
                 Assert.IsTrue(target[i - 1] == 42, string.Format("Failed ArrayList item {0} didnt answer the Ultimate Question of Life, the Universe, and Everything", i));
@@ -190,10 +187,125 @@ namespace Test
             {
                 target.Insert(i - 1, 'x');
             }
-                        
+
             foreach (int i in Enumerable.Range(1, 999))
             {
                 Assert.IsTrue(target[i - 1] == 'x', string.Format("Failed ArrayList item {0} didnt answer the Ultimate Question of Life, the Universe, and Everything", i));
+            }
+        }
+
+        [TestMethod]
+        public void CheckForIntEquality()
+        {
+            ArrayList<int> targetOne = new ArrayList<int>();
+            ArrayList<int> targetTwo = new ArrayList<int>();
+            targetOne.Add(1);
+            targetOne.Add(2);
+            targetTwo.Add(1);
+            targetTwo.Add(2);
+
+            for (int i = 0; i < targetOne.Count; i++)
+            {
+                Assert.AreEqual(targetOne[i], targetTwo[i], string.Format("Failed Lists are not equal."));
+            }
+
+        }
+
+        [TestMethod]
+        public void CheckForCharEquality()
+        {
+            ArrayList<char> targetOne = new ArrayList<char>();
+            ArrayList<char> targetTwo = new ArrayList<char>();
+            targetOne.Add('a');
+            targetOne.Add('b');
+            targetTwo.Add('a');
+            targetTwo.Add('b');
+
+            for (int i = 0; i < targetOne.Count; i++)
+            {
+                Assert.AreEqual(targetOne[i], targetTwo[i], string.Format("Failed Lists are not equal."));
+            }
+
+        }
+
+        [TestMethod]
+        public void CheckForIntInequality()
+        {
+            ArrayList<int> targetOne = new ArrayList<int>();
+            ArrayList<int> targetTwo = new ArrayList<int>();
+            targetOne.Add(1);
+            targetOne.Add(2);
+            targetTwo.Add(1);
+            targetTwo.Add(3);
+            targetTwo.Add(4);
+
+            if (targetOne.Count != targetTwo.Count)
+            {
+                Assert.AreNotEqual(targetOne, targetTwo, string.Format("Failed Lists are equal."));
+            }
+            else
+            {
+                for (int i = 0; i < targetOne.Count; i++)
+                {
+                    if (targetOne[i] == targetTwo[i])
+                    {
+                        Assert.AreEqual(targetOne[i], targetTwo[i], string.Format("Failed Lists are not equal."));
+                    }
+                    else
+                    {
+                        Assert.AreNotEqual(targetOne, targetTwo, string.Format("Failed Lists are equal."));
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        public void CheckForCharInequality()
+        {
+            ArrayList<char> targetOne = new ArrayList<char>();
+            ArrayList<char> targetTwo = new ArrayList<char>();
+            targetOne.Add('a');
+            targetOne.Add('b');
+            targetOne.Add('c');
+            targetTwo.Add('a');
+            targetTwo.Add('b');
+
+            if (targetOne.Count != targetTwo.Count)
+            {
+                Assert.AreNotEqual(targetOne, targetTwo, string.Format("Failed Lists are equal."));
+            }
+            else
+            {
+                for (int i = 0; i < targetOne.Count; i++)
+                {
+                    if (targetOne[i] == targetTwo[i])
+                    {
+                        Assert.AreEqual(targetOne[i], targetTwo[i], string.Format("Failed Lists are not equal."));
+                    }
+                    else
+                    {
+                        Assert.AreNotEqual(targetOne, targetTwo, string.Format("Failed Lists are equal."));
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        public void checkTestClass()
+        {
+            TestClass testCaseOne = new TestClass { Id = 1, Value = "alpha" };
+            TestClass testCaseTwo = new TestClass { Id = 2, Value = "beta" };
+            TestClass testCaseThree = new TestClass { Id = 3, Value = "gamma" };
+
+            ArrayList<TestClass> target = new ArrayList<TestClass>();
+
+            target.Add(testCaseOne);
+            target.Add(testCaseTwo);
+            target.Add(testCaseThree);
+
+            for (int i = 0; i < 3; i++)
+            {
+                Assert.IsTrue(target[i].Id == i + 1, string.Format("Failed at {0}", i));
             }
         }
     }

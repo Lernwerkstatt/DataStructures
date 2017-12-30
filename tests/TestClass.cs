@@ -13,10 +13,6 @@ namespace Test
 
         public int Id { get; set; }
         public object Value { get; set; }
-
-        public TestClass(int id, object value)
-        {
-            //???
-        }
+        
     }
 }
